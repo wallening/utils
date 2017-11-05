@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+  <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+    <param name="target" value="System.out"/>
+    <!-- 设置日志文件输出样式 -->
+    <layout class="org.apache.log4j.PatternLayout">
+    <!-- 设置日志的输出格式 -->
+      <param name="ConversionPattern" value="%40d{[yyyy-MM-dd HH:mm:ss-S]} [%-5p] [ %-3.3r] [%-10.10c] %l  [%x] --> %n %m %n"/>
+    </layout>
+  </appender>
+
+  <!-- 查询级别，输出到文件(限定每个文件大小) -->
+   <appender name="RollingFile" class="org.apache.log4j.RollingFileAppender">     
+    <!-- 设置日志输出文件名 -->    
+        <param name="File" value="/home/acer/log/demoRollingFile.log" />    
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->     
+        <param name="Append" value="true" />
+        <!-- 指定文件的最大 大小为1MB 单位是B(1024B=1KB) -->     
+        <param name="MaxFileSize" value="1024" />
+        <!-- 备份日志文件的个数（默认是10个） -->
+        <param name="MaxBackupIndex" value="10" />     
+        <layout class="org.apache.log4j.PatternLayout">     
+            <param name="ConversionPattern" value="%40d{[yyyy-MM-dd HH:mm:ss-S]} [%-5p] [ %-3.3r] [%-10.10c] %l  [%x] --> %n %m %n" />     
+        </layout>     
+    </appender>     
+
+  <!-- 输出到文件(每天产生一个文件)  -->
+  <appender name="DailyRolling" class="org.apache.log4j.DailyRollingFileAppender">
+    <!-- 设置日志输出文件名 --> 
+     <param name="File" value="/home/acer/log/demoDailyRollingFile.log" />       
+     <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" /> 
+    <!-- 设置日志文件输出样式 -->
+    <layout class="org.apache.log4j.PatternLayout">
+    <!-- 设置日志的输出格式 -->
+      <param name="ConversionPattern" value="%40d{[yyyy-MM-dd HH:mm:ss-S]} [%-5p] [ %-3.3r] [%-10.10c] %l  [%x] --> %n %m %n"/>
+    </layout>
+  </appender>
+
+ <!-- 日志输出到数据中 -->
+<!--    <appender name="dblog" class="org.apache.log4j.jdbc.JDBCAppender"> -->
+<!--       设置数据库信息和连接  -->
+<!--      <param name="Driver" value="com.mysql.jdbc.Driver" />        -->
+<!--      <param name="URL" value="jdbc:mysql://localhost:3306/mysql?useUnicode=true;characterEncoding=utf-8;autoReconnect=true;failOverReadOnly=false;zeroDateTimeBehavior=convertToNull" />  -->
+<!--      <param name="user" value="root" /> -->
+<!--      <param name="password" value="root" /> -->
+<!--      设置日志文件输出样式 -->
+<!--     <layout class="org.apache.log4j.PatternLayout"> -->
+<!--     设置输出日志的sql -->
+<!--       <param name="ConversionPattern" value="INSERT INTO t_logs(createDate, thread, priority, category,methodName, message) values('%d', '%t', '%-5p', '%c','%M', '[%l]-%m')"/> -->
+<!--     </layout> -->
+<!--   </appender> -->
+
+  <!-- 旧接口，新接口为logger -->
+<!--   <category name="com.sdzw.wgn" additivity="false"> -->
+<!--         <level value="INFO" /> -->
+<!--         <appender-ref ref="Console" /> -->
+<!--   </category> -->
+  
+ <!-- 可以是包名可以是appender名，包名优先级会高，如果不设置appender-ref，则输出到root的appender下,additivity默认为true，false时不会输出到rootlogger，但如果rootllogger下也有该appender，则也会输出到root下-->
+<!--  <logger name="Console" additivity="false"> -->
+<!--    <level value="warn" /> -->
+<!--    <appender-ref ref="Console" /> -->
+<!--  </logger> -->
+
+ <!-- 设置com.swh.crm.service路径下的日志信息级别为info级别,输出到root的appender下 -->
+ <logger name="com.swh.oa.service" additivity="true">
+   <level value="info" />
+ </logger>
+
+<!-- 设置级别和目的地 -->
+  <root>
+    <!-- 设置根日志级别,指定路径中的日志优先级大于根日志优先级
+    （com.swh.crm(只会输出info级别以上的日志)>root,
+     org.quartz(只会输出warn级别以上的日志)）
+     没有指定日志级别的则以root指定的日志级别为准 -->
+    <level value="debug" />
+    <!-- 引入appender -->
+    <appender-ref ref="DailyRolling" />
+    <appender-ref ref="RollingFile" />
+    <appender-ref ref="Console" />
+<!--     <appender-ref ref="dblog" /> -->
+  </root>
+
+</log4j:configuration>

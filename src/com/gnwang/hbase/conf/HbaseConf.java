@@ -6,8 +6,8 @@ import java.util.List;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.gnwang.hbase.bean.HbaseCreateTableBean;
-import com.gnwang.hbase.until.FileUntil;
-import com.gnwang.hbase.until.LogUntil;
+import com.gnwang.until.file.FileUntil;
+import com.gnwang.until.log.LogUntil;
 
 public class HbaseConf {
 	

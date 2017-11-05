@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.gnwang.hbase.bean.HbaseCreateTableBean;
 import com.gnwang.hbase.conf.HbaseConf;
-import com.gnwang.hbase.until.HbaseUntil;
+import com.gnwang.until.hbase.HbaseUntil;
 
 public class HbaseDao {
 	static HbaseUntil hbaseUntil;

@@ -1,4 +1,4 @@
-package com.gnwang.hbase.until;
+package com.gnwang.until.es;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -36,6 +36,7 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.gnwang.until.log.LogUntil;
 /**
  * index: es里的index相当于一个数据库。 
  * type: 相当于数据库里的一个表。 

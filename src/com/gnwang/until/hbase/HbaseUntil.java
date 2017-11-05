@@ -1,4 +1,4 @@
-package com.gnwang.hbase.until;
+package com.gnwang.until.hbase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +30,8 @@ import org.apache.hadoop.hbase.filter.Filter;
 import org.apache.hadoop.hbase.filter.FilterList;
 import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
 import org.apache.hadoop.hbase.util.Bytes;
+
+import com.gnwang.until.log.LogUntil;
 
 public class HbaseUntil {
 	private static HbaseUntil hbaseUntil;
