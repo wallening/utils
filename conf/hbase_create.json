@@ -1,10 +1,10 @@
-{
-	"hbase.zookeeper.quorum": "hadoop1:2181,hadoop2:2181,hadoop3:2181",
-	"tables": [
+[{
+	"hbaseQuorum": "hadoop1:2181,hadoop2:2181,hadoop3:2181",
+	"hbaseTables": [
 		{
 			"spiltKeys": "5,8",
 			"tableName": "gnwang_hbase_test_01",
 			"familys": "cf01,cf02"
 		}
 	]
-}
+}]

@@ -12,14 +12,7 @@ public class HbaseDao {
 	//根据配置文件建表
 	public static void checkTable() throws Exception {
 		List<HbaseCreateTableBean> tasks = HbaseConf.getTasks(HbaseConf.relativePath);
-		for(HbaseCreateTableBean task: tasks) {
-			hbaseUntil = HbaseUntil.getInstance(task.getQuorum());
-			if (!hbaseUntil.existTable(task.getTableName())) {
-				hbaseUntil.createTableWithRegion(task.getTableName(), task.getSpiltKeys(), task.getFamilys().split(","));
-			}
-			hbaseUntil.existTable(task.getTableName());
-			hbaseUntil.deleteTable(task.getTableName());
-		}
+		System.out.println(tasks.get(0).getHbaseQuorum());
 	}
 	public static void main(String[] args) throws Exception {
 		System.setProperty("hadoop.home.dir", "/home/acer/log");

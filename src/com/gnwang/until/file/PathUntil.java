@@ -3,12 +3,16 @@ package com.gnwang.until.file;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.slf4j.Logger;
+
+import com.gnwang.until.log.LogUntil;
 /**
  * 参考
  * http://www.cnblogs.com/leehongee/p/3324062.html
  */
 public class PathUntil {
-	
+	static final Logger LOGGER = LogUntil.getWorkLog();
 	/**
 	 * 多个路径拼接
 	 * @param first 第一个路径
@@ -24,7 +28,7 @@ public class PathUntil {
 	 * 获取用户目录，new File()的默认路径
 	 * @return
 	 */
-	public static String getUserDir() {
+	public static String getCurrentUserDir() {
 		return System.getProperty("user.dir");
 	}
 	
@@ -39,7 +43,7 @@ public class PathUntil {
 //		url = PathUntil.class.getResource("/");
 		//推荐
 		url = Thread.currentThread().getContextClassLoader().getResource("");
-		return url.toString();
+		return url.getPath();
 	}
 	
 	/**
@@ -47,9 +51,14 @@ public class PathUntil {
 	 * @return
 	 */
 	public static String getCurrentJavapath() {
-		return PathUntil.class.getResource("").toString();
+		return PathUntil.class.getResource("").getPath();
 		
 	}
 	
+	public static void main(String[] args) {
+		LOGGER.debug(getCurrentClasspath());
+		LOGGER.debug(getCurrentJavapath());
+		LOGGER.debug(getCurrentUserDir());
+	}
 	
 }
