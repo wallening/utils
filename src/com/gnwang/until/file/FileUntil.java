@@ -20,7 +20,7 @@ public class FileUntil {
 	public static Path findPath(String filePath) throws IOException {
 		Path rtn = Paths.get(filePath);
 		if (!rtn.toFile().exists()) {
-			rtn = Paths.get(PathUntil.getCurrentClasspath(), filePath);
+			rtn = Paths.get(PathUntil.getCurr+entClasspath(), filePath);
 		}
 		return rtn;
 	}
